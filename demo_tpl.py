@@ -2,6 +2,9 @@
 #-*- coding:utf-8 -*-
 """
 demo template
+
+Test environment:
+    Mac OS X 10.6.8
 """
 import sys
 

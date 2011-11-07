@@ -5,9 +5,7 @@
 - PyQt
 - PySide
 
-Differences Between PySide and PyQt
-http://developer.qt.nokia.com/wiki/Differences_Between_PySide_and_PyQt
-
+[Differences Between PySide and PyQt](http://developer.qt.nokia.com/wiki/Differences_Between_PySide_and_PyQt)
 
 ## Wiki
 
@@ -56,8 +54,8 @@ Fix 'Documentation' button doesn't works on Mac OS X
 A list of applications that use PyQt as their UI layer
 
 [Eric](http://eric-ide.python-projects.org/index.html) is a full featured Python and Ruby editor and IDE.
-source code: http://eric-ide.python-projects.org/eric-code.html
+    [source code](http://eric-ide.python-projects.org/eric-code.html).
 
 [Calibre](http://calibre-ebook.com/) is a free and open source e-book library management application developed by users of e-books for users of e-books.
-source code: http://manual.calibre-ebook.com/develop.html
+    [source code](http://manual.calibre-ebook.com/develop.html).
 
