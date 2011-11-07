@@ -9,3 +9,4 @@ dist/
 .ropeproject
 BUGS.txt
 TODO.txt
+*.json
