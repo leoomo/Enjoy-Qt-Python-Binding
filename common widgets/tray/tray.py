@@ -44,7 +44,6 @@ def load_settings(path=default_settings_path):
     return settings
 
 
-
 class CustomDlg(QtGui.QDialog):
     """
     Custom dialog template.
@@ -162,6 +161,13 @@ class Demo(QtGui.QMainWindow):
 
     def closeEvent(self, evt):
         self.confirm_quit(self, evt)
+
+    def keyPressEvent(self, evt):
+        close_win_cmd_w = (evt.key() == QtCore.Qt.Key_W and evt.modifiers() == QtCore.Qt.ControlModifier)
+        close_win_esc = (evt.key() == QtCore.Qt.Key_Escape)
+
+        if close_win_cmd_w or close_win_esc:
+            self.close()
 
     def on_sys_tray_icon_clicked(self, activation_reason):
         assert activation_reason in (
