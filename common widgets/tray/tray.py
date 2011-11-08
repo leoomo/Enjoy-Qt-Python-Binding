@@ -1,5 +1,5 @@
 """
-Prompt on application exit
+System tray icon and Prompt on PyQt/PySide application exit
 
 NOTE: We don't catch closeEvent cause by command-q on Mac.
 
@@ -89,16 +89,16 @@ class QuitConfirmDlg(CustomDlg):
         self.resize(400, 250)
 
         self.tips_label = QtGui.QLabel("When you click the close button should me:", self)
-        self.tips_label.setGeometry(QtCore.QRect(40, 40, 280, 15))
+        self.tips_label.setGeometry(40, 40, 280, 15)
 
         self.minimize_rbtn = QtGui.QRadioButton("&Minimize to system tray", self)
-        self.minimize_rbtn.setGeometry(QtCore.QRect(70, 90, 180, 20))
+        self.minimize_rbtn.setGeometry(70, 90, 180, 20)
 
         self.exit_rbtn = QtGui.QRadioButton("&Exit program", self)
-        self.exit_rbtn.setGeometry(QtCore.QRect(70, 120, 110, 20))
+        self.exit_rbtn.setGeometry(70, 120, 110, 20)
 
         self.no_confirm_cbox = QtGui.QCheckBox("&Don't ask me again", self)
-        self.no_confirm_cbox.setGeometry(QtCore.QRect(40, 180, 150, 20))
+        self.no_confirm_cbox.setGeometry(40, 180, 150, 20)
 
         self.minimize_rbtn.setChecked(not self._settings['x_action_is_quit'])
         self.exit_rbtn.setChecked(self._settings['x_action_is_quit'])
@@ -165,7 +165,7 @@ class Demo(QtGui.QMainWindow):
     def keyPressEvent(self, evt):
         close_win_cmd_w = (evt.key() == QtCore.Qt.Key_W and evt.modifiers() == QtCore.Qt.ControlModifier)
         close_win_esc = (evt.key() == QtCore.Qt.Key_Escape)
-
+ 
         if close_win_cmd_w or close_win_esc:
             self.close()
 

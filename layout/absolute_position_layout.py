@@ -20,14 +20,33 @@ class Demo(QtGui.QMainWindow):
     def __init__(self):
         super(Demo, self).__init__()
 
-        x, y, w, h = 500, 200, 200, 100
+        x, y, w, h = 500, 200, 300, 100
         self.setGeometry(x, y, w, h)
-        
+
+
         label1 = QtGui.QLabel('hello', self)
-        label1.move(10, 10)
+        x, y = 10, 10
+        label1.move(x, y)
+        label1.resize(200, 30)
+
+
+        text = str(label1.frameSize())
+        label1.setText(text)
+
+        # PySide.QtCore.QSize(200, 30) --> x, y
+        print 'label1:', text
+
 
         label2 = QtGui.QLabel('world', self)
-        label2.move(40, 40)
+        x, y = 20, 40
+        label2.move(x, y)
+        label2.resize(300, 30)
+
+        text = str(label2.geometry())
+        label2.setText(text)
+
+        # PySide.QtCore.QRect(20, 40, 300, 30) --> x, y, w, h
+        print 'label2:', text
 
 
     def show_and_raise(self):

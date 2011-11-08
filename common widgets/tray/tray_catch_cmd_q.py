@@ -1,5 +1,5 @@
 """
-Prompt on PyQt/PySide application exit
+System tray icon and Prompt on PyQt/PySide application exit
 
 NOTE: We do catch closeEvent cause by command-q on Mac,
     this feature bring a bug here, it could listen user clicks application icon/dock icon.
