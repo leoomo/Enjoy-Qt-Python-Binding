@@ -32,13 +32,15 @@ class Demo(QtGui.QWidget):
         x, y = 20, 20
         label1.move(x, y)
         label1.linkActivated.connect(self._label1_linkActivated)
-
+        label1.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+    
 
         label2 = QtGui.QLabel(self)
         x, y = 20, 55
         label2.move(x, y)
         text2 = u'\u4e2d\u6587'
         label2.setText(text2)
+        label2.setFrameStyle(QtGui.QFrame.Panel)
 
         print label1.text(), type(label1.text()), label1.text() == text1
         print label2.text(), type(label2.text()), label2.text() == web.utils.safeunicode(text2)

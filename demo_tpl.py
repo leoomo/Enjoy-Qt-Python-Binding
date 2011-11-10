@@ -33,6 +33,5 @@ if __name__ == "__main__":
     demo = Demo()
     demo.show_and_raise()
 
-
     sys.exit(app.exec_())
     
