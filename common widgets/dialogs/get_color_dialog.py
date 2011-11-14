@@ -43,7 +43,7 @@ class Demo(QtGui.QWidget):
         self.preview_color.setGeometry(x, y, w, h)
 
         color = QtGui.QColor(0, 0, 0)
-        style = "QWidget { background-color: %s }" % color.name()
+        style = "QWidget { background-color: %s; }" % color.name()
         self.preview_color.setStyleSheet(style)
 
         
@@ -51,7 +51,7 @@ class Demo(QtGui.QWidget):
         col = QtGui.QColorDialog.getColor()
 
         if col.isValid():
-            style = "QWidget { background-color: %s }" % col.name()
+            style = "QWidget { background-color: %s; }" % col.name()
             self.preview_color.setStyleSheet(style)
 
 

@@ -7,6 +7,8 @@ Build-in dialogs demo
 
 Test environment:
     Mac OS X 10.6.8
+
+http://www.pyside.org/docs/pyside/PySide/QtGui/QMessageBox.html
 """
 import sys
 
@@ -37,6 +39,7 @@ def popup_error(parent, msg):
     QtGui.QMessageBox.critical(parent, title, msg, QtGui.QMessageBox.Close)
 
 def popup_about(parent, msg):
+    """ This build-in dialog is suck, you should not use it. """
     title = "ABOUT"
     QtGui.QMessageBox.about(parent, title, msg)
 
