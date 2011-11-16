@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-move a button in DND II
+copy the text of button in DND
 
 Test environment:
     Mac OS X 10.6.8
