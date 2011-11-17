@@ -49,10 +49,8 @@ class Demo(QtGui.QWidget):
         vbox.addWidget(input_win)
 
 
-
         vbox.setSpacing(0)
         vbox.setContentsMargins(0, 0, 0, 0)
-    
 
         self.setLayout(vbox)
 
