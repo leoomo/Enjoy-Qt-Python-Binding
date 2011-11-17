@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-demo template
+Central widget in main window
 
 Test environment:
     Mac OS X 10.6.8
+
+
+http://www.pyside.org/docs/pyside/PySide/QtGui/QMainWindow.html#qt-main-window-framework
+http://doc.qt.nokia.com/latest/qmainwindow.html#qt-main-window-framework
 """
-import platform
 import sys
-import time
 
 try:
     from PySide import QtCore
@@ -17,25 +19,15 @@ except ImportError:
     from PyQt4 import QtCore
     from PyQt4 import QtGui
 
-
-def get_platform_name():
-    name = None
-    while not name:
-        try:
-            return platform.system()
-        except IOError:
-            time.sleep(0.1)
-
-
-class Demo(QtGui.QWidget):
+    
+class Demo(QtGui.QMainWindow):
     def __init__(self):
         super(Demo, self).__init__()
-        
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-#        if get_platform_name() == "Darwin":
-#            self.setAttribute(QtCore.Qt.WA_MacBrushedMetal, True)
+        textEdit = QtGui.QTextEdit(self)
+        self.setCentralWidget(textEdit)
 
 
     def show_and_raise(self):
