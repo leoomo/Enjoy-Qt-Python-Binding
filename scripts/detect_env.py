@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 Detect platform name and SIP/Python/PyQt/PySide version.
 
@@ -9,51 +10,46 @@ Test environment:
 References:
  - http://www.pyside.org/docs/pyside/pysideversion.html
 """
-import platform
+
 import sys
-import time
+import platform
 
 try:
     import PySide
     from PySide import QtCore
+    print "Using PySide ..."
+    print
 except ImportError:
-    from PyQt4 import QtCore
     PySide = None
+    from PyQt4 import QtCore
+
 
 try:
     import sip
 except ImportError:
     sip = None
 
-def get_platform():
-    pl = None
-    while not pl:
-        try:
-            pl = platform.system()
-        except:
-            # sometime system call failed on MacOS 10.6,
-            # fix it in a quick and dirty way
-            time.sleep(0.1)
-            continue
-    return pl
 
-def get_python_version():
-    return sys.version[:3]
+def get_qt_version():
+    if not PySide:
+        return QtCore.QT_VERSION_STR
+    else:
+        return QtCore.__version__
 
-print 'Platform:', get_platform()
+def get_pyside_version():
+    return PySide and PySide.__version__
 
-print 'Python:', get_python_version()
+def main():
+    print 'Platform: %s' % sys.platform
+    print "Python version: %s" % platform.python_version()
+    print "Qt version: %s" % get_qt_version()
 
-if sip:
-    print 'SIP:', sip.SIP_VERSION_STR
+    if sip:
+        print "SIP version: %s" % sip.SIP_VERSION_STR
+    if PySide:
+        print "PySide version: %s" % PySide.__version__
+    else:
+        print "PyQt version: %s" % QtCore.PYQT_VERSION_STR
 
-if not PySide:
-    print "Qt:", QtCore.QT_VERSION_STR
-    print 'PyQt:', QtCore.PYQT_VERSION_STR
-else:
-    print 'Qt:', QtCore.__version__
-    print "PySide:", PySide.__version__
-
-
-
-
+if __name__ == "__main__":
+    main()
