@@ -17,6 +17,8 @@ Requirements:
     [py2app](https://bitbucket.org/ronaldoussoren/py2app/) is a Python setuptools command which
     will allow you to make standalone Mac OS X application bundles and plugins from Python scripts.
 
+NOTE: you **have to** install Python 2.7, PySide and qt4-mac by MacPorts, 
+		install py2app and its requirements by **manual**
 
 Test environment:
     Mac OS X 10.6.8

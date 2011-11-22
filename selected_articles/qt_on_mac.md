@@ -1,12 +1,14 @@
 # Qt On Mac
 
-Qt/Mac Special Features
-http://doc.qt.nokia.com/qq/qq18-macfeatures.html
-
+ - [Qt/Mac Special Features](http://doc.qt.nokia.com/qq/qq18-macfeatures.html)
+ - [Best Practice Guides](http://doc.qt.nokia.com/latest/best-practices.html)
+ - [Qt Quick](http://doc.qt.nokia.com/latest/qtquick.html)
 
 ## Window
 
+ - [Window and Dialog Widgets](http://doc.qt.nokia.com/latest/application-windows.html)/The different between Window and Widget
  - [Cocoa Textured Window in QT](http://stackoverflow.com/questions/1413337/cocoa-textured-window-in-qt)
+
 
 ## Dock
 
@@ -23,3 +25,11 @@ http://doc.qt.nokia.com/qq/qq18-macfeatures.html
  - [QT on OSX: Tray Icon - Icon Dock Problem](http://stackoverflow.com/questions/4997245/qt-on-osx-tray-icon-icon-dock-problem)
 
  - [How to change Qt applications's dock icon at run-time in MacOS?](http://stackoverflow.com/questions/981147/how-to-change-qt-applicationss-dock-icon-at-run-time-in-macos)
+
+ - [cause the application icon to bounce in the dock](http://doc.qt.nokia.com/latest/qapplication.html#alert)
+
+
+## Icon
+
+ - [Does Qt Builder have a built-in tool for editing a toolbar?](http://stackoverflow.com/questions/2752259/does-qt-builder-have-a-built-in-tool-for-editing-a-toolbar)
+ 

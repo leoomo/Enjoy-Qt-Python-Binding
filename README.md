@@ -55,6 +55,10 @@ Tutorials collection
  - [Tutorials - PyQt Wiki](http://diotavelli.net/PyQtWiki/Tutorials)
 
 
+ - [Qt | DevBean's World](http://www.devbean.info/category/qt)
+ - [Qt Creator系列教程](http://www.yafeilinux.com/?page_id=3)
+ - [Qt - 1+1=2](http://blog.csdn.net/dbzhang800/article/category/759342)
+
 ## Books
 
  - [Rapid GUI Programming with Python and Qt](http://www.amazon.com/Programming-Python-Prentice-Software-Development/dp/0132354187)

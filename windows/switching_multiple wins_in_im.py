@@ -10,14 +10,14 @@ from PySide import QtGui
 
 
 class ContactListWidow(QtGui.QWidget):
-    def __init__(self, parent):
+    def __init__(self, sign_in_win):
         super(ContactListWidow, self).__init__()
         self.setWindowTitle('ContactListWidow')
 
         x, y, w, h = 200, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-        self.sign_in_win = parent
+        self.sign_in_win = sign_in_win
 
         self.switch_btn = QtGui.QPushButton('switch', self)
         self.switch_btn.clicked.connect(self._switch_btn_cb)

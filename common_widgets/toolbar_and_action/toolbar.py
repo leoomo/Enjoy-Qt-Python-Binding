@@ -6,8 +6,11 @@ QToolBar and QAction demo
 Test environment:
     Mac OS X 10.6.8
 
+
+http://doc.qt.nokia.com/latest/qaction.html
 http://www.pyside.org/docs/pyside/PySide/QtGui/QToolBar.html
 http://www.pyside.org/docs/pyside/PySide/QtGui/QAction.html
+
 """
 import sys
 
@@ -25,16 +28,17 @@ class Demo(QtGui.QMainWindow):
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-        self.exit = QtGui.QAction(QtGui.QIcon('../icons/exit.png'), 'Exit', self)
-        self.exit.setShortcut('Ctrl+Q')
 
-#        self.connect(self.exit, QtCore.SIGNAL('triggered()'), QtCore.SLOT('close()'))
-        self.exit.triggered.connect(self.close)
+        exit_a = QtGui.QAction(QtGui.QIcon('exit.png'), 'Exit', self)
+        exit_a.setShortcut('Ctrl+Q')
+#        self.connect(exit_a, QtCore.SIGNAL('triggered()'), QtCore.SLOT('close()'))
+        exit_a.triggered.connect(self.close)
 
 
-        self.toolbar = self.addToolBar('Exit')
-        self.toolbar.addAction(self.exit)
+        toolbar = self.addToolBar('Exit')
+        toolbar.addAction(exit_a)
 
+        self._toolbar = toolbar
 
     def show_and_raise(self):
         self.show()

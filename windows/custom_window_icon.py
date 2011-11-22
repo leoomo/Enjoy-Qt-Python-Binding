@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """
-Config application window icon
+custom application window icon
 
 Test environment:
     Mac OS X 10.6.8
 """
+import os
 import sys
 
 try:
@@ -15,24 +16,31 @@ except ImportError:
     from PyQt4 import QtGui
 
 
-class Foo(QtGui.QWidget):
+PWD = os.path.dirname(os.path.realpath(__file__))
+icon_path = os.path.join(PWD, "qt-logo.png")
+
+
+class Demo(QtGui.QWidget):
     def __init__(self):
-        super(Foo, self).__init__()
+        super(Demo, self).__init__()
 
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-        # NOTE: don't use following, it doesn't show icon in dock bar on Mac
-#        icon = QtGui.QIcon("iphone-sms.png")
-#        self.setWindowIcon(icon)
+        icon = QtGui.QIcon(icon_path)
+        self.setWindowIcon(icon)
+
+    def show_and_raise(self):
+        self.show()
+        self.raise_()
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
 
-    icon = QtGui.QIcon("qt-logo.png")
+    icon = QtGui.QIcon(icon_path)
     app.setWindowIcon(icon)
 
-    foo = Foo()
-    foo.show()
+    demo = Demo()
+    demo.show_and_raise()
 
     sys.exit(app.exec_())

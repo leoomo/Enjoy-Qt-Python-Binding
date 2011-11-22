@@ -38,7 +38,8 @@ class Demo(QtGui.QMainWindow):
                      self._account_combox_currentIndexChanged)
 
 
-        sign_up_link = 'https://feixin.10086.cn/account/register'
+#        sign_up_link = 'https://feixin.10086.cn/account/register'
+        sign_up_link = "#"
         text = '<a href="%s">Sign Up</a>' % sign_up_link
         sign_up_label = QtGui.QLabel(text, self)
         sign_up_label.setGeometry(300, 70, 130, 30)
@@ -52,7 +53,8 @@ class Demo(QtGui.QMainWindow):
         self.passwd_lineedit.setGeometry(70, 140, 200, 22)
 
 
-        reset_passwd_link = 'http://my.feixin.10086.cn/password/find/'
+#        reset_passwd_link = 'http://my.feixin.10086.cn/password/find/'
+        reset_passwd_link = "#"
         text = "<a href='%s'>Reset Password</a>" % reset_passwd_link
         reset_passwd_label = QtGui.QLabel(text, self)
         reset_passwd_label.setGeometry(300, 140, 130, 30)
@@ -80,13 +82,16 @@ class Demo(QtGui.QMainWindow):
         self.raise_()
 
     def report_bugs_cb(self, link):
-        webbrowser.open_new_tab(link)
+#        webbrowser.open_new_tab(link)
+        print "link:", link
 
     def _show_sign_up_dlg(self, link):
-        webbrowser.open_new_tab(link)
+#        webbrowser.open_new_tab(link)
+        print "link:", link
     
     def _on_reset_passwd_label_clicked(self, link):
-        webbrowser.open_new_tab(link)
+#        webbrowser.open_new_tab(link)
+        print "link:", link
 
     def _account_combox_currentIndexChanged(self, text):
         if not text:
@@ -100,6 +105,5 @@ if __name__ == "__main__":
 
     demo = Demo()
     demo.show_and_raise()
-
 
     sys.exit(app.exec_())
