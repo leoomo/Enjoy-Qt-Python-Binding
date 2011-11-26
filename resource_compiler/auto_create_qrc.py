@@ -91,9 +91,8 @@ QRC_TPL = """<!DOCTYPE RCC><RCC version="1.0">
 </RCC>"""
 
 
-def scan_files(src_path = "."):
+def scan_files(src_path = ".", output_prefix = "./"):
     filters = ['.(png|jpg|gif)$']
-    output_prefix = './'
     report = False
     lines = tree(src_path, filters = filters, output_prefix = output_prefix, report = report)
 
@@ -103,17 +102,26 @@ def scan_files(src_path = "."):
 
     return lines
 
-def create_qrc_body(src_path):
-    lines = scan_files(src_path)
-
+def create_qrc_body(lines):
     buf = ["<file>%s</file>" % i for i in lines]
     buf = "\n".join(buf)
     buf = QRC_TPL % buf
 
     return buf
 
-def create_qrc(src_path, dst_file):
-    buf = create_qrc_body(src_path)
+def get_realpath(path):
+    if os.path.islink(path) and not os.path.isabs(path):
+        PWD = os.path.realpath(os.curdir)
+        path = os.path.join(PWD, path)
+    else:
+        path = os.path.realpath(path)
+    return path
+
+def create_qrc(src_path, output_prefix, dst_file = None):
+    src_path = get_realpath(src_path)
+
+    lines = scan_files(src_path, output_prefix)
+    buf = create_qrc_body(lines)
 
     if dst_file:
         parent = os.path.dirname(dst_file)
@@ -129,16 +137,17 @@ def create_qrc(src_path, dst_file):
 if __name__ == "__main__":
     args = sys.argv[1:]
 
-    if not args:
-        msg = "python auto_create_qrc.py <src_path> [dst_qrc_file]"
+    if len(args) not in (1, 2):
+        msg = "Usage: " + '\n'
+        msg += "python auto_create_qrc.py <src_path>" + '\n'
+        msg += "python auto_create_qrc.py <src_path> <output_prefix>"
         sys.stdout.write('\n' + msg + '\n')
         sys.exit(-1)
 
     src_path = args[0]
-
-    if len(args) > 1:
-        dst_file = args[1]
+    if len(args) == 1:
+        output_prefix = "./"
     else:
-        dst_file = None
+        output_prefix = args[1]
 
-    create_qrc(src_path, dst_file)
+    create_qrc(src_path, output_prefix)

@@ -63,6 +63,7 @@ Tutorials collection
 
  - [Rapid GUI Programming with Python and Qt](http://www.amazon.com/Programming-Python-Prentice-Software-Development/dp/0132354187)
     publication date: Oct 28, 2007
+ - [GUI Programming with Python: QT Edition](http://www.commandprompt.com/community/pyqt/book1), 2001
  - [Books about GUI Design](http://doc.qt.nokia.com/latest/guibooks.html)
 
 ## Other nice documentations

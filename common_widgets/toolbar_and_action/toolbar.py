@@ -10,6 +10,7 @@ Test environment:
 http://doc.qt.nokia.com/latest/qaction.html
 http://www.pyside.org/docs/pyside/PySide/QtGui/QToolBar.html
 http://www.pyside.org/docs/pyside/PySide/QtGui/QAction.html
+http://www.devbean.info/2011/08/native-style-qt-8/
 
 """
 import sys
@@ -27,7 +28,7 @@ class Demo(QtGui.QMainWindow):
         super(Demo, self).__init__()
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
-
+        self.setUnifiedTitleAndToolBarOnMac(True)
 
         exit_a = QtGui.QAction(QtGui.QIcon('exit.png'), 'Exit', self)
         exit_a.setShortcut('Ctrl+Q')

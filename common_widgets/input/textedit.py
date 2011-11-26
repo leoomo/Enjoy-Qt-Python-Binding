@@ -44,14 +44,14 @@ class Demo(QtGui.QMainWindow):
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-        self.qd = QtGui.QTextDocument()
-        self.qd.setDefaultStyleSheet(css)
+        self.text_doc = QtGui.QTextDocument()
+        self.text_doc.setDefaultStyleSheet(css)
 
-        self.qt = QtGui.QTextEdit(self)
-        self.setCentralWidget(self.qt)
-        self.qt.setDocument(self.qd)
-        self.qt.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard | QtCore.Qt.TextSelectableByMouse)
-#        self.qt.setReadOnly(True)
+        self.text_edit = QtGui.QTextEdit(self)
+        self.setCentralWidget(self.text_edit)
+        self.text_edit.setDocument(self.text_doc)
+        self.text_edit.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard | QtCore.Qt.TextSelectableByMouse)
+#        self.text_edit.setReadOnly(True)
         self.log(msg = ' ')
         self.log(msg = 'hello\nworld')
         self.log(msg = 'hello\nworld')
@@ -69,16 +69,16 @@ class Demo(QtGui.QMainWindow):
         self.buttom_btn.move(150, 300)
         self.buttom_btn.clicked.connect(self.goto_buttom_btn_clicked)
         
-        #t = self.qt.toHtml()
+        #t = self.text_edit.toHtml()
         
         self.show()
 
     def goto_top_btn_clicked(self):
-        scroll_bar = self.qt.verticalScrollBar()
+        scroll_bar = self.text_edit.verticalScrollBar()
         scroll_bar.setSliderPosition(scroll_bar.minimum())
 
     def goto_buttom_btn_clicked(self):
-        scroll_bar = self.qt.verticalScrollBar()
+        scroll_bar = self.text_edit.verticalScrollBar()
         scroll_bar.setSliderPosition(scroll_bar.maximum())
 
     def log(self, nickname = 'foo', msg = None):
@@ -88,17 +88,17 @@ class Demo(QtGui.QMainWindow):
         msg = msg.replace(os.linesep, '<br />')
         log = '''<div><span class="nickname">%s</span>&nbsp;&nbsp;<span class="ts">%s</span><p class="msg">%s</p></div>''' % \
             (nickname, now_time, msg)
-        self.qt.append(log)
+        self.text_edit.append(log)
 
-#        t = self.qd.toHtml()
+#        t = self.text_doc.toHtml()
 #        with open('log.txt', 'w') as f:
 #            f.write(t.toUtf8())
 
 #        # buf = t
 #        buf = QtCore.QString('<html><body>你好</body></html>'.decode('utf-8'))
-#        self.qd.setHtml(buf)
+#        self.text_doc.setHtml(buf)
 
-#        t = self.qd.toHtml()
+#        t = self.text_doc.toHtml()
 #        with open('log2.txt', 'w') as f:
 #            f.write(t.toUtf8())
 

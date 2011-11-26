@@ -12,12 +12,15 @@ see also: toolbar.py
 """
 import sys
 
-try:
-    from PySide import QtCore
-    from PySide import QtGui
-except ImportError:
-    from PyQt4 import QtCore
-    from PyQt4 import QtGui
+#try:
+#    from PySide import QtCore
+#    from PySide import QtGui
+#except ImportError:
+#    from PyQt4 import QtCore
+#    from PyQt4 import QtGui
+
+from PyQt4 import QtCore
+from PyQt4 import QtGui
 
 
 class Demo(QtGui.QMainWindow):
@@ -41,6 +44,9 @@ class Demo(QtGui.QMainWindow):
         file_menu = QtGui.QMenu(menubar)
         exit_menu = file_menu.addMenu('&Exit')
         exit_menu.addAction(exit_a)
+
+
+        qt_mac_set_dock_menu
 
 
         say_a = QtGui.QAction('Say', self)
