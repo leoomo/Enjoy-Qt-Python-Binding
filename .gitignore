@@ -9,4 +9,5 @@ dist/
 .ropeproject
 BUGS.txt
 TODO.txt
-*.json
+*.jsonresource_compiler/bar.py
+resource_compiler/bar.qrc

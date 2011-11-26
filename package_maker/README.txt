@@ -1,20 +1,16 @@
 # Package Maker
 
-
-Mon, 07 Feb 2011, http://www.rfk.id.au/blog/entry/hatchet-hack-frozen-pyside-apps/
-
+ - [Aral Balkan · How to make standalone OS X application bundles from PyQt apps using py2app](http://aralbalkan.com/1675)
+ - [Building Mac OS X applications with py2app](http://www.rkblog.rk.edu.pl/w/p/building-mac-os-x-applications-py2app/)
+ - [Hatchet: hack frozen PySide apps down to size](http://www.rfk.id.au/blog/entry/hatchet-hack-frozen-pyside-apps/), Feb 2011
+ - [How do I create a nice-looking DMG for Mac OS X using command-line tools?](http://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools/97025#97025)
+ - [Problem using py2app with the lxml package](http://stackoverflow.com/questions/868510/problem-using-py2app-with-the-lxml-package)
+ 
 TODO:
 
  - simple pyside
  - multiple packages/modules (third part/yours)
  - non-script resources, suck as icon, image, xml etc
-
- - [How do I create a nice-looking DMG for Mac OS X using command-line tools?](http://stackoverflow.com/questions/96882/how-do-i-create-a-nice-looking-dmg-for-mac-os-x-using-command-line-tools/97025#97025)
-
-## selected
-
- - [Problem using py2app with the lxml package](http://stackoverflow.com/questions/868510/problem-using-py2app-with-the-lxml-package)
-
 
 ## py2app bugs
 
