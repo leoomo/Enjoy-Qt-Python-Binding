@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-Gird layout demo
+QAction and QKeySequence demo
 
 Test environment:
     Mac OS X 10.6.8
+
+http://doc.qt.nokia.com/latest/qwidget.html#events
 """
 import sys
 
@@ -23,27 +25,18 @@ class Demo(QtGui.QWidget):
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
-        title = QtGui.QLabel('Title')
-        author = QtGui.QLabel('Author')
-        review = QtGui.QLabel('Review')
 
-        titleEdit = QtGui.QLineEdit()
-        authorEdit = QtGui.QLineEdit()
-        reviewEdit = QtGui.QTextEdit()
+        del_contact = "Ctrl+Shift+d"
+        key_seq = QtGui.QKeySequence(del_contact)
 
-        grid = QtGui.QGridLayout()
-        grid.setSpacing(10)
-
-        grid.addWidget(title, 1, 0)
-        grid.addWidget(titleEdit, 1, 1)
-
-        grid.addWidget(author, 2, 0)
-        grid.addWidget(authorEdit, 2, 1)
-
-        grid.addWidget(review, 3, 0)
-        grid.addWidget(reviewEdit, 3, 1, 5, 1)
+        act = QtGui.QAction(self)
+        act.setShortcut(key_seq)
         
-        self.setLayout(grid)
+        self.addAction(act)
+        act.triggered.connect(self._short_cut_cb)
+
+    def _short_cut_cb(self):
+        print "_short_cut_cb"
 
     def show_and_raise(self):
         self.show()
@@ -57,4 +50,3 @@ if __name__ == "__main__":
     demo.show_and_raise()
 
     sys.exit(app.exec_())
-

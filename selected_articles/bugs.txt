@@ -1,0 +1,25 @@
+QLineEdit doesn’t accept CJK symbols or punctuation on Mac OS X
+
+Safari -> Edit -> Special Characters
+STHeiti
+
+external links
+
+ - [CJK symbols and punctuation](http://en.wikipedia.org/wiki/Template:Unicode_chart_CJK_Symbols_and_Punctuation)
+ - http://www.kde.gr.jp/~asaki/how-to-support-input-method.html
+
+3001 、
+3002 。
+
+3008 〈
+3009 〉
+300A 《
+300B 》
+
+300C 「
+300D 」
+300E 『
+300F 』
+
+
+/System/Library/Input Methods

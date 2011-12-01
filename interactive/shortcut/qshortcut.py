@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-QSpacerItem demo
+shortcut
 
 Test environment:
     Mac OS X 10.6.8
@@ -16,38 +16,33 @@ except ImportError:
     from PyQt4 import QtGui
 
 
-class Demo(QtGui.QDialog):
+class Demo(QtGui.QWidget):
     def __init__(self):
         super(Demo, self).__init__()
 
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
-        
-        hbox = QtGui.QHBoxLayout()
-        
-        a_btn = QtGui.QPushButton('a')
-        hbox.addWidget(a_btn)
 
-        hbox.addSpacerItem(QtGui.QSpacerItem(100, 50))
+        btn = QtGui.QToolButton(self)
+        btn.setGeometry(10, 10, 100, 100)
+        btn.clicked.connect(self._act_cb)
 
-        b_btn = QtGui.QPushButton('b')
-        hbox.addWidget(b_btn)
+        del_contact = "Ctrl+Shift+h"
+        key_seq = QtGui.QKeySequence(del_contact)
+        btn.setShortcut(key_seq)
 
-        style = "QPushButton { border: 3px solid red }; "
-        self.setStyleSheet(style)
-                
-        self.setLayout(hbox)
-        
+    def _act_cb(self):
+        print "_act_cb"
+
     def show_and_raise(self):
         self.show()
         self.raise_()
 
-        
+
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
 
     demo = Demo()
-    demo.show()
+    demo.show_and_raise()
 
-    app.exec_()
-
+    sys.exit(app.exec_())

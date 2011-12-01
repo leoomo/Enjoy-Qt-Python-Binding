@@ -26,7 +26,8 @@ class Demo(QtGui.QWidget):
         self.setGeometry(x, y, w, h)
 
         paths = list(QtGui.QIcon.themeSearchPaths())
-        custom_path = '/opt/local/share/qt4/demos/undo/icons'
+#        custom_path = '/opt/local/share/qt4/demos/undo/icons'
+        custom_path = '/opt/local/share/icons/oxygen/'
         paths.append(custom_path)
         QtGui.QIcon.setThemeSearchPaths(paths)
         

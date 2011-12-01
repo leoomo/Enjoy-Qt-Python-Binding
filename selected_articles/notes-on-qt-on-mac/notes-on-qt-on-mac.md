@@ -6,6 +6,11 @@
 
  - [Qt Quarterly - Qt on Mac OS X using Cocoa](Qt on Mac OS X using Cocoa](http://doc.qt.nokia.com/qq/QtQuarterly28.pdf)
 
+## Native
+
+ - [Qt for Mac OS X - Specific Issues](http://doc.qt.nokia.com/latest/mac-differences.html0
+ - [Qt is Mac OS X Native](http://doc.qt.nokia.com/latest/qtmac-as-native.html)
+
 ## Window
 
  - [Window and Dialog Widgets](http://doc.qt.nokia.com/latest/application-windows.html)/The different between Window and Widget
@@ -63,6 +68,15 @@ In Activity Monitor, it was mark as 'Python (Not Responding)'.
 
  - [How can I change QT GUI widgets on a QMainWindow from a QThread which is a member?](http://stackoverflow.com/questions/1129587/how-can-i-change-qt-gui-widgets-on-a-qmainwindow-from-a-qthread-which-is-a-member)
  - [Qt: Background thread refreshing UI thread](http://stackoverflow.com/questions/2376835/qt-background-thread-refreshing-ui-thread)
+
+
+problem:
+
+    QThread: Destroyed while thread is still running
+
+solution:
+
+
 
 ## Signals and Slots
 

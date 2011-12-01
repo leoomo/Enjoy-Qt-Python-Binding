@@ -4,7 +4,10 @@ auto scan resources file and create Qt resource(qrc) file for PySide/PyQt projec
 
 Usage:
     python auto_create_qrc.py your_pictures_path > bar.qrc
-    pyrcc4-2.7 -no-compress bar.qrc -o bar.py
+
+    pyside-rcc -no-compress bar.qrc -o bar.py # if you use PySide
+
+    pyrcc4-2.7 -no-compress bar.qrc -o bar.py # if you use PyQt
 
 Author: Shuge Lee <shuge.lee@gmail.com>
 License: MIT License
@@ -12,9 +15,84 @@ License: MIT License
 import os
 import re
 import sys
-import web
 
 PWD = os.path.dirname(os.path.realpath(__file__))
+
+
+# the function strips copy from web.utils.strips
+
+iters = [list, tuple]
+import __builtin__
+if hasattr(__builtin__, 'set'):
+    iters.append(set)
+if hasattr(__builtin__, 'frozenset'):
+    iters.append(set)
+if sys.version_info < (2,6): # sets module deprecated in 2.6
+    try:
+        from sets import Set
+        iters.append(Set)
+    except ImportError:
+        pass
+
+class _hack(tuple): pass
+iters = _hack(iters)
+iters.__doc__ = """
+A list of iterable items (like lists, but not strings). Includes whichever
+of lists, tuples, sets, and Sets are available in this version of Python.
+"""
+
+
+def _strips(direction, text, remove):
+    if isinstance(remove, iters):
+        for subr in remove:
+            text = _strips(direction, text, subr)
+        return text
+
+    if direction == 'l':
+        if text.startswith(remove):
+            return text[len(remove):]
+    elif direction == 'r':
+        if text.endswith(remove):
+            return text[:-len(remove)]
+    else:
+        raise ValueError, "Direction needs to be r or l."
+    return text
+
+def rstrips(text, remove):
+    """
+    removes the string `remove` from the right of `text`
+
+        >>> rstrips("foobar", "bar")
+        'foo'
+
+    """
+    return _strips('r', text, remove)
+
+def lstrips(text, remove):
+    """
+    removes the string `remove` from the left of `text`
+
+        >>> lstrips("foobar", "foo")
+        'bar'
+        >>> lstrips('http://foo.org/', ['http://', 'https://'])
+        'foo.org/'
+        >>> lstrips('FOOBARBAZ', ['FOO', 'BAR'])
+        'BAZ'
+        >>> lstrips('FOOBARBAZ', ['BAR', 'FOO'])
+        'BARBAZ'
+
+    """
+    return _strips('l', text, remove)
+
+def strips(text, remove):
+    """
+    removes the string `remove` from the both sides of `text`
+
+        >>> strips("foobarfoo", "foo")
+        'bar'
+    """
+    return rstrips(lstrips(text, remove), remove)
+
 
 
 def tree(top = '.',
@@ -46,8 +124,8 @@ def tree(top = '.',
         assert root != dirs
 
         if max_level is not None:
-            cur_dir = web.utils.strips(root, top_fullpath)
-            path_levels = web.utils.strips(cur_dir, "/").count("/")
+            cur_dir = strips(root, top_fullpath)
+            path_levels = strips(cur_dir, "/").count("/")
             if path_levels > max_level:
                 continue
 
@@ -67,7 +145,7 @@ def tree(top = '.',
                 if output_prefix is None:
                     cur_file_fullpath = os.path.join(top_par_fullpath_prefix, root, filename)
                 else:
-                    buf = web.utils.strips(os.path.join(root, filename), top_fullpath)
+                    buf = strips(os.path.join(root, filename), top_fullpath)
                     if output_prefix != "''":
                         cur_file_fullpath = os.path.join(output_prefix, buf.strip('/'))
                     else:
@@ -84,12 +162,6 @@ def tree(top = '.',
     return lines
 
 
-QRC_TPL = """<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-%s
-</qresource>
-</RCC>"""
-
 
 def scan_files(src_path = ".", output_prefix = "./"):
     filters = ['.(png|jpg|gif)$']
@@ -101,6 +173,13 @@ def scan_files(src_path = ".", output_prefix = "./"):
         lines.remove("")
 
     return lines
+
+
+QRC_TPL = """<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+%s
+</qresource>
+</RCC>"""
 
 def create_qrc_body(lines):
     buf = ["<file>%s</file>" % i for i in lines]
@@ -134,6 +213,7 @@ def create_qrc(src_path, output_prefix, dst_file = None):
     else:
         sys.stdout.write(buf)
 
+        
 if __name__ == "__main__":
     args = sys.argv[1:]
 
