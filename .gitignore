@@ -11,3 +11,4 @@ BUGS.txt
 TODO.txt
 *.jsonresource_compiler/bar.py
 resource_compiler/bar.qrc
+html_render/

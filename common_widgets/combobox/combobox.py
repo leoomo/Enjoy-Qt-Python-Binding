@@ -38,7 +38,7 @@ class Demo(QtGui.QWidget):
 
         combo2 = QtGui.QComboBox(self)
         combo2.resize(200, 30)
-        combo2.setEditable(True)
+#        combo2.setEditable(True)
         combo2.move(20, 60)
         self.connect(combo2, QtCore.SIGNAL('activated(int)'), self._cb_onActivated2)
         self.connect(combo2, QtCore.SIGNAL('currentIndexChanged(QString)'), self._cb_currentIndexChanged2)
@@ -46,16 +46,15 @@ class Demo(QtGui.QWidget):
 
         items = (
             '',
-            (1, 'Lisp', 'lisp.png'),
-            (1, 'C', 'c.png'),
-            (1, 'Objective-C', 'objc.png'),
-            (1, 'Python', 'python.png'),
-            (1, 'Java', 'java.png'),
+            ('Lisp', 'lisp.png'),
+            ('C', 'c.png'),
+            ('Objective-C', 'objc.png'),
+            ('Python', 'python.png'),
+            ('Java', 'java.png'),
             )
         for i in items:
             if isinstance(i, tuple):
-                index, text, icon_path = i[0], i[1], i[2]
-#                combo2.insertItem(index, QtGui.QIcon(icon_path), text)
+                text, icon_path = i[0], i[1]
                 combo2.addItem(QtGui.QIcon(icon_path), text)
             else:
                 combo2.addItem(i)
