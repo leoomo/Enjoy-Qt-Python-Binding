@@ -6,6 +6,7 @@ Install Oxygen icon on Mac OS X via MacPorts:
     sudo port install oxygen-icons
 
 """
+import sys
 
 try:
     from PySide import QtGui
@@ -19,6 +20,9 @@ __all__ = [
 
 
 def config_theme_path():
+    if sys.platform != "darwin":
+        return
+
     theme_name = str(QtGui.QIcon.themeName())
 
     if theme_name != "Oxygen":
