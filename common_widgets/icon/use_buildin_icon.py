@@ -21,7 +21,10 @@ try:
 except ImportError:
     from PyQt4 import QtCore
     from PyQt4 import QtGui
-    
+
+
+import qutils
+
 
 class Demo(QtGui.QWidget):
     def __init__(self):
@@ -31,19 +34,24 @@ class Demo(QtGui.QWidget):
         self.setGeometry(x, y, w, h)
 
 
-        QtGui.QIcon.setThemeName("Oxygen")
-        custom_path = ['/opt/local/share/icons']
-        QtGui.QIcon.setThemeSearchPaths(custom_path)
-
+        # NOTICE: the difference
         print "themeName:", QtGui.QIcon.themeName()
         print "hasThemeIcon:", QtGui.QIcon.hasThemeIcon("edit-undo")
 
+        qutils.config_theme_path()
 
-        icon = QtGui.QIcon.fromTheme("edit-undo", QtGui.QIcon(":/undo.png"))
+        print "themeName:", QtGui.QIcon.themeName()
+        print "hasThemeIcon:", QtGui.QIcon.hasThemeIcon("edit-undo")
+        print
+        
+
+        my_online = QtGui.QIcon("/path/to/my_online.png")
+        
+        icon = QtGui.QIcon.fromTheme("user-online", my_online)
         print "icon not found:", icon.isNull()
 
         lab = QtGui.QLabel('foo', self)
-        pixmap = icon.pixmap(32, 32, QtGui.QIcon.Normal, QtGui.QIcon.On)
+        pixmap = icon.pixmap(QtCore.QSize(32, 32), QtGui.QIcon.Normal, QtGui.QIcon.On)
         lab.setPixmap(pixmap)
         lab.move(10, 10)
 
