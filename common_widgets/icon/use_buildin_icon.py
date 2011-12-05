@@ -49,6 +49,7 @@ class Demo(QtGui.QWidget):
         
         icon = QtGui.QIcon.fromTheme("user-online", my_online)
         print "icon not found:", icon.isNull()
+        print "availableSizes:", icon.availableSizes()
 
         lab = QtGui.QLabel('foo', self)
         pixmap = icon.pixmap(QtCore.QSize(32, 32), QtGui.QIcon.Normal, QtGui.QIcon.On)
