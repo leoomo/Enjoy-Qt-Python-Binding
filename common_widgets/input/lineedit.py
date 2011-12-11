@@ -1,56 +1,61 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+"""
+demo template
 
-# ZetCode PyQt4 tutorial
-#
-# This example shows text which 
-# is entered in a QLineEdit
-# in a QLabel widget.
-# 
-# author: Jan Bodnar
-# website: zetcode.com
-# last edited: December 2010
+Test environment:
+    Mac OS X 10.6.8
 
+http://doc.qt.nokia.com/latest/qlineedit.html
+"""
+import sys
 
+try:
+    from PySide import QtCore
+    from PySide import QtGui
+except ImportError:
+    from PyQt4 import QtCore
+    from PyQt4 import QtGui
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+class Demo(QtGui.QWidget):
+    def __init__(self):
+        super(Demo, self).__init__()
 
-
-class Example(QtGui.QWidget):
-    def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-
-        self.initUI()
-
-
-    def initUI(self):
-
-        self.label = QtGui.QLabel(self)
-        edit = QtGui.QLineEdit(self)
-        
-        edit.move(60, 100)
-        self.label.move(60, 40)
-
-        self.connect(edit, QtCore.SIGNAL('textChanged(QString)'), 
-            self.onChanged)
-
-        self.setWindowTitle('QLineEdit')
-        self.setGeometry(250, 200, 350, 250)
-        
-
-    def onChanged(self, text):
-        self.label.setText(text)
-        self.label.adjustSize()
+        x, y, w, h = 500, 200, 300, 400
+        self.setGeometry(x, y, w, h)
 
 
-def main():
-  
-    app = QtGui.QApplication([])
-    exm = Example()
-    exm.show()
-    app.exec_()  
+        self.lineedit = QtGui.QLineEdit(self)
+        self.lineedit.move(10, 10)
+
+        # required >= Qt 4.7
+        self.lineedit.setPlaceholderText("placeholder")
 
 
-if __name__ == '__main__':
-    main()
+#        http://doc.qt.nokia.com/latest/qlineedit.html#inputMask-prop
+#        mac_address_mask = "HH:HH:HH:HH:HH:HH;_"
+#        self.lineedit.setInputMask(mac_address_mask)
+
+        self.lineedit.cursorPositionChanged.connect(self._lineedit_cursorPositionChanged)
+        self.lineedit.returnPressed.connect(self._lineedit_returnPressed)
+
+        self.setFocus()
+
+    def _lineedit_cursorPositionChanged(self, old, new):
+        print old, new
+
+    def _lineedit_returnPressed(self):
+        print "text:", self.lineedit.text()
+
+    def show_and_raise(self):
+        self.show()
+        self.raise_()
+
+
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+
+    demo = Demo()
+    demo.show_and_raise()
+
+    sys.exit(app.exec_())
