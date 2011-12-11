@@ -1,0 +1,12 @@
+about icon resources
+
+Objective-C
+http://marakana.com/training/objective-c/objective-c_2.0.html
+http://byterevel.com/2011/06/20/objective-c-tutorial-1-set-up-xcode-hello-world-and-comments/
+http://www.boston-technology.com/blog/?p=199
+http://www.experimentgarden.com/2009/06/introduction-to-interfaces-in-objective.html
+
+Lisp
+http://etechmag.com/2011/10/25/john-mccarthy-pioneer-of-artificial-intelligence-died.html
+
+

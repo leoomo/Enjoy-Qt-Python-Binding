@@ -83,6 +83,3 @@ if __name__ == "__main__":
     demo.show_and_raise()
 
     sys.exit(app.exec_())
-
-
-
