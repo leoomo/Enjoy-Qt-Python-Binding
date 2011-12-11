@@ -12,3 +12,4 @@ TODO.txt
 *.jsonresource_compiler/bar.py
 resource_compiler/bar.qrc
 html_render/
+qcommons/foo/win_geometry.json

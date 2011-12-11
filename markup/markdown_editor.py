@@ -66,7 +66,7 @@ class Foo(QtGui.QWidget):
 
         self.source.textChanged.connect(self.source_text_changed)
         
-        self.source.setText(web.utils.safeunicode(buf))
+        self.source.setText(web.safeunicode(buf))
 
     def source_text_changed(self):
         buf = self.source.toPlainText()
