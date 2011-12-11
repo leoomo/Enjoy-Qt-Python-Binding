@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-QAction and QKeySequence demo
+demo template
 
 Test environment:
     Mac OS X 10.6.8
-
-http://doc.qt.nokia.com/latest/qwidget.html#events
+    
 """
 import sys
 
@@ -18,6 +17,18 @@ except ImportError:
     from PyQt4 import QtGui
 
 
+class SheetWin(QtGui.QWidget):
+    def __init__(self, parent = None):
+        super(SheetWin, self).__init__(parent)
+
+        self.setWindowFlags(QtCore.Qt.Sheet)
+
+
+        btn = QtGui.QPushButton("close", self)
+        btn.move(10, 10)
+        btn.clicked.connect(self.close)
+        
+
 class Demo(QtGui.QWidget):
     def __init__(self):
         super(Demo, self).__init__()
@@ -25,19 +36,12 @@ class Demo(QtGui.QWidget):
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
+        btn = QtGui.QPushButton("btn", self)
+        btn.clicked.connect(self.btn_cb)
 
-        del_contact = "Ctrl+Shift+d"
-        key_seq = QtGui.QKeySequence(del_contact)
-
-        act = QtGui.QAction(self)
-        act.setShortcut(key_seq)
-        
-        self.addAction(act)
-        act.triggered.connect(self._short_cut_cb)
-
-    def _short_cut_cb(self):
-        print "_short_cut_cb"
-
+    def btn_cb(self):
+        sw_obj = SheetWin(self)
+        sw_obj.show()
 
     def show_and_raise(self):
         self.show()

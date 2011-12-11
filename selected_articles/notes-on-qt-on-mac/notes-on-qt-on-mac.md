@@ -90,7 +90,7 @@ solution:
 
 You must convert msg to unicode object
 
-    msg = web.utils.safeunicode(msg)
+    msg = web.safeunicode(msg)
 
 ## Local
 

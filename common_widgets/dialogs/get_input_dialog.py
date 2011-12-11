@@ -41,7 +41,7 @@ class Demo(QtGui.QWidget):
         text, resp = QtGui.QInputDialog.getText(self, title, msg)
         
         if resp:
-            self.label.setText(web.utils.safeunicode(text))
+            self.label.setText(web.safeunicode(text))
 
     def show_and_raise(self):
         self.show()

@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-QAction and QKeySequence demo
+demo template
 
 Test environment:
     Mac OS X 10.6.8
-
-http://doc.qt.nokia.com/latest/qwidget.html#events
+    
 """
 import sys
 
@@ -17,7 +16,6 @@ except ImportError:
     from PyQt4 import QtCore
     from PyQt4 import QtGui
 
-
 class Demo(QtGui.QWidget):
     def __init__(self):
         super(Demo, self).__init__()
@@ -25,19 +23,14 @@ class Demo(QtGui.QWidget):
         x, y, w, h = 500, 200, 300, 400
         self.setGeometry(x, y, w, h)
 
+        self.toggle_btn = QtGui.QPushButton("Toggle button", self)
+        self.toggle_btn.setCheckable(True)
+        self.toggle_btn.setChecked(True)
+        self.toggle_btn.move(100, 100)
+        self.toggle_btn.clicked.connect(self._toggle_btn_cb)
 
-        del_contact = "Ctrl+Shift+d"
-        key_seq = QtGui.QKeySequence(del_contact)
-
-        act = QtGui.QAction(self)
-        act.setShortcut(key_seq)
-        
-        self.addAction(act)
-        act.triggered.connect(self._short_cut_cb)
-
-    def _short_cut_cb(self):
-        print "_short_cut_cb"
-
+    def _toggle_btn_cb(self):
+        print "is checked:", self.toggle_btn.isChecked()
 
     def show_and_raise(self):
         self.show()

@@ -43,7 +43,7 @@ class Demo(QtGui.QWidget):
         label2.setFrameStyle(QtGui.QFrame.Panel)
 
         print label1.text(), type(label1.text()), label1.text() == text1
-        print label2.text(), type(label2.text()), label2.text() == web.utils.safeunicode(text2)
+        print label2.text(), type(label2.text()), label2.text() == web.safeunicode(text2)
 
 
     def show_and_raise(self):
