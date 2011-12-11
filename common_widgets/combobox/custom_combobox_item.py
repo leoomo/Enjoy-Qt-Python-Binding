@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-ComboBox with auto-complete and custom icon style item
+custom the item of QComboBox
 
 Test environment:
     Mac OS X 10.6.8
@@ -27,13 +27,9 @@ class Demo(QtGui.QWidget):
         
         self.combo = QtGui.QComboBox(self)
         self.combo.resize(200, 30)
-#        self.combo.setEditable(True)
         self.combo.move(20, 60)
 
-        self.combo.activated.connect(self._cb_onActivated)
-
-        self.connect(self.combo, QtCore.SIGNAL('currentIndexChanged(QString)'), self._cb_currentIndexChanged)
-        self.combo.editTextChanged.connect(self._cb_editTextChanged)
+        self.combo.currentIndexChanged.connect(self._combo_currentIndexChanged)
 
         self.items = (
             '',
@@ -50,19 +46,27 @@ class Demo(QtGui.QWidget):
             else:
                 self.combo.addItem(i)
 
-    def _cb_onActivated(self, idx):
-        print 'selected2:', idx
 
+    def _combo_currentIndexChanged(self, idx):
+        activated_idx = idx
+
+        if idx == -1:
+            return
+        
         item = self.items[idx]
+        if not item:
+            return
+        
         text, icon_path, user_data = item[0], item[1], item[2]
 
-        print "matched idx:", self.combo.findData(user_data)
+        matched_idx = self.combo.findData(user_data)
+        assert activated_idx == matched_idx
 
-    def _cb_currentIndexChanged(self, a):
-        print 'index2:', a
-
-    def _cb_editTextChanged(self, text):
+        print
         print "text:", text
+        print "icon path:", icon_path
+        print "user_data:", user_data
+
 
     def show_and_raise(self):
         self.show()
