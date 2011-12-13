@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-use QTreeView as QComboBox model's view
+contact list locator
 
 Test environment:
     Mac OS X 10.6.8
 
-http://www.pyside.org/docs/pyside/PySide/QtGui/QComboBox.html
-http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html
 """
 import re
 import sys
@@ -69,7 +67,8 @@ class MagicBox(object):
     def filter_list_by_keyword(self, keyword):
         self._cache = [i
                       for i in self._magics
-                          if re.match(keyword, i.fullname, re.I)]
+                          if i.fullname.find(keyword) != -1 or \
+                             re.match(keyword, i.fullname, re.I)]
 
 
 class ListModel(QtCore.QAbstractListModel):
@@ -93,6 +92,9 @@ class ListModel(QtCore.QAbstractListModel):
         elif role == QtCore.Qt.DecorationRole:
             return QtGui.QIcon(icon_path)
 
+#        elif role == QtCore.Qt.BackgroundColorRole:
+#            return QtGui.QBrush(QtGui.QColor("#d4d4d4"))
+
         return None
 
 
@@ -106,23 +108,12 @@ class Demo(QtGui.QWidget):
         self.magic_box = MagicBox()
 
         
-        self.combo = QtGui.QComboBox(self)
-        self.combo.resize(200, 30)
-        self.combo.move(10, 10)
+        self.lineedit = QtGui.QLineEdit(self)
+        self.lineedit.resize(200, 30)
+        self.lineedit.move(10, 10)
 
-        self.combo.setEditable(True)
-        self.combo.setInsertPolicy(QtGui.QComboBox.NoInsert)
-#        self.combo.currentIndexChanged.connect(self._combo_currentIndexChanged)
-
-        self.combo.addItem("")
-        for magic in self.magic_box.all_magics:
-            text, icon_path, user_data = magic.fullname, magic.icon_path, magic.pid
-            self.combo.addItem(QtGui.QIcon(icon_path), text, user_data)
-                        
-        self.combo_lineedit = self.combo.lineEdit()
-        self.combo_lineedit.returnPressed.connect(self._lineedit_returnPressed)
-        self.combo_lineedit.textChanged.connect(self._lineedit_textChanged)
-        self.combo_lineedit.cursorPositionChanged.connect(self._lineedit_cur_pos_changed)
+        self.lineedit.returnPressed.connect(self._lineedit_returnPressed)
+        self.lineedit.textChanged.connect(self._lineedit_textChanged)
 
             
         self.list_view = QtGui.QListView(self)
@@ -134,39 +125,14 @@ class Demo(QtGui.QWidget):
     def _lineedit_textChanged(self, text):
         print "text changed:", text
 
-    def _lineedit_returnPressed(self):
-        text = self.combo_lineedit.text()
-        print "return press:", text
-
-    def _lineedit_cur_pos_changed(self, old, new):
-        print old, new
-
-        text = self.combo_lineedit.text()
-        not_selected_text = text[:new]
-
-        self.magic_box.filter_list_by_keyword(not_selected_text)
+        self.magic_box.filter_list_by_keyword(text)
         self.list_view.update()
 
+    def _lineedit_returnPressed(self):
+        text = self.lineedit.text()
 
-#    def _combo_currentIndexChanged(self, idx):
-#        activated_idx = idx
-#
-#        if idx == -1:
-#            return
-#
-#        item = self.items[idx]
-#        if not item:
-#            return
-#
-#        text, icon_path, user_data = item[0], item[1], item[2]
-#
-#        matched_idx = self.combo.findData(user_data)
-#        assert activated_idx == matched_idx
-#
-#        print
-#        print "text:", text
-#        print "icon path:", icon_path
-#        print "user_data:", user_data
+        print "return press:", text
+        print "magics:", self.magic_box.magics
 
 
     def show_and_raise(self):
