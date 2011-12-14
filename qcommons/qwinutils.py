@@ -207,7 +207,7 @@ class CustomWin(QtGui.QWidget):
 
 _auto_set_geometry_offset_is_zero_if_mare_then = 5
 _auto_set_geometry_offset_last_x = 0
-_auto_set_geometry_offset_step = 10
+_auto_set_geometry_offset_step = 20
 
 def _get_offset_for_auto_set_geometry():
     global _auto_set_geometry_offset_is_zero_if_mare_then
@@ -232,13 +232,14 @@ def auto_set_geometry(primary, secondary):
     desktop = QtGui.QApplication.desktop()
 
     px = primary.x()
-    primary_in_left_screen = desktop.width() / 2 + primary.width() / 2 >= px
+    primary_in_left_screen = (desktop.width() / 2 - primary.width() / 2) >= px
 
     if primary_in_left_screen:
-        secondary_x_start = px + primary.width() + 5
+        secondary_x_start = px + primary.width() + (_auto_set_geometry_offset_step / 4)
     else:
-        secondary_x_start = px - primary.width() - 5
-    secondary_y_start = (desktop.height() - secondary.height()) / 2
+        secondary_x_start = px - primary.width() - (_auto_set_geometry_offset_step / 4)
+
+    secondary_y_start = (desktop.height() / 2) - (secondary.height() / 2) - _auto_set_geometry_offset_step
 
     offset_x, offset_y = _get_offset_for_auto_set_geometry()
 
