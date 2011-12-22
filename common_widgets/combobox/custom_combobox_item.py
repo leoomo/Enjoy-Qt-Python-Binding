@@ -6,6 +6,7 @@ custom the item of QComboBox
 Test environment:
     Mac OS X 10.6.8
 
+http://doc.qt.nokia.com/latest/qcombobox.html
 http://www.pyside.org/docs/pyside/PySide/QtGui/QComboBox.html
 """
 import sys
@@ -43,6 +44,8 @@ class Demo(QtGui.QWidget):
             if isinstance(i, tuple):
                 text, icon_path, user_data = i[0], i[1], i[2]
                 self.combo.addItem(QtGui.QIcon(icon_path), text, user_data)
+                # or
+                # self.combo.addItem(text, user_data)
             else:
                 self.combo.addItem(i)
 

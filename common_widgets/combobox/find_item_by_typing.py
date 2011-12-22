@@ -49,6 +49,9 @@ class Demo(QtGui.QWidget):
             else:
                 self.combo.addItem(i)
 
+        print self.combo.itemData(0)
+        print self.combo.itemData(1)
+        print self.combo.itemData(2)
 
     def _combo_currentIndexChanged(self, idx):
         activated_idx = idx

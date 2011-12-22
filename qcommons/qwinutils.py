@@ -18,12 +18,12 @@ except ImportError:
     from PyQt4 import QtCore
     from PyQt4 import QtGui
 
-
 __all__ = [
     "auto_set_geometry",
     "AutoSaveGeo",
     "CustomDlg",
     "CustomWin",
+    "CustomSheetWin",
     ]
 
 
@@ -203,6 +203,30 @@ class CustomWin(QtGui.QWidget):
         dlg.show()
 
         return dlg.get_inputs()
+
+
+class CustomSheetWin(QtGui.QWidget):
+    def __init__(self, parent = None):
+        super(CustomSheetWin, self).__init__(parent)
+        self.resize(400, 300)
+        self.setWindowFlags(QtCore.Qt.Sheet)
+
+    def closeEvent(self, evt):
+        self.emit(QtCore.SIGNAL("sheet_window_close( QWidget * )"), self)
+        return QtGui.QWidget.closeEvent(self, evt)
+
+    def close_and_emit(self):
+        self.emit(QtCore.SIGNAL("sheet_window_close_with_accept( QWidget * )"), self)
+        self.close()
+
+    def keyPressEvent(self, evt):
+        close_win_cmd_w = (evt.key() == QtCore.Qt.Key_W and evt.modifiers() == QtCore.Qt.ControlModifier)
+        close_win_esc = (evt.key() == QtCore.Qt.Key_Escape)
+
+        if close_win_cmd_w or close_win_esc:
+            self.close()
+
+        return super(CustomSheetWin, self).keyPressEvent(evt)
 
 
 _auto_set_geometry_offset_is_zero_if_mare_then = 5

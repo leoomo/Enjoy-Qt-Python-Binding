@@ -28,6 +28,10 @@ class Demo(QtGui.QWidget):
         btn.clicked.connect(self._act_cb)
 
         del_contact = "Ctrl+Shift+h"
+
+        # it couldn't catch delete by default
+#        del_contact = "Ctrl+Shift+Delete"
+
         key_seq = QtGui.QKeySequence(del_contact)
         btn.setShortcut(key_seq)
 
