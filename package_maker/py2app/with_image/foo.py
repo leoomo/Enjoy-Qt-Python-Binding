@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 """
-package .app with jpeg support used a ridiculous workaround
+use a ridiculous workaround way make image/jpeg works in .app
 
 Test environment:
     Mac OS X 10.6.8

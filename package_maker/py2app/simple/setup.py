@@ -34,17 +34,17 @@ TODO: strip dist/$APP_NAME.app/Contents/Frameworks
 """
 import compileall
 import os
-from setuptools import setup
-from setuptools import find_packages
+import setuptools
 import shutil
 import sys
 
 
 PWD = os.path.dirname(os.path.realpath(__file__))
 
+
 APP_NAME = "foo"
 APP_VERSION = "1.0"
-APP_SCRIPT_NAME = '%s.py' % APP_NAME.lower()
+APP_SCRIPT_NAME = "%s.py" % APP_NAME.lower()
 
 
 def get_py2app_options():
@@ -60,17 +60,15 @@ def get_py2app_options():
 
     python_qt = PySide or PyQt4
 
-    #    import PyQt4
-    #    python_qt = PyQt4
-
-
     qt_gui = "%s.QtGui" % python_qt.__name__
     qt_core = "%s.QtCore" % python_qt.__name__
 
     # specify third part python packages
-    packages = ["lxml"] + find_packages(exclude = ("demos", ))
+#    packages = ["lxml", "PIL"]
+    packages = []
 
-    includes = ["sip", qt_gui, qt_core, "web", "BeautifulSoup"]
+#    includes = ["sip", qt_gui, qt_core, "web", "BeautifulSoup"]
+    includes = ["sip", qt_gui, qt_core]
     excludes = ["bz2", "psycopg2", "xml", "Tkinter", "Tix", "turtle", "pydoc",
                 "decimal", "pickletools", "mailbox", "optparse", "idlelib",
                 "distutils", "Carbon", "unittest"]
@@ -87,9 +85,7 @@ def get_py2app_options():
 
     frameworks = [
         "/opt/local/lib/libxml2.2.dylib",
-        #        "/opt/local/share/qt4/plugins/imageformats/libqjpeg.dylib",
-        #        "/opt/local/share/qt4/plugins/imageformats/libqtiff.dylib",
-    ]
+        ]
 
 
     py2app_options = {
@@ -112,7 +108,6 @@ plist = dict(
 
 
 data_files = [
-    ("plugins", ["/opt/local/share/qt4/plugins/imageformats"]),
     ("", ["/opt/local/lib/Resources/qt_menu.nib"]),
 ]
 
@@ -124,18 +119,18 @@ def _create_app():
             }
     ]
 
-    setup(
+    setuptools.setup(
         name = APP_NAME,
         version = APP_VERSION,
-        description = "The Missing SMS client for Mac OS X",
+        description = "blah blah",
         author = "Shuge Lee",
         author_email = "shuge.lee@gmail.com",
         platforms = ["Mac OS X"],
         license = "MIT License",
-        url = "http://iblah.shuge-lab.org",
+        url = "http://foo.shuge-lab.org",
 
         scripts = [APP_SCRIPT_NAME],
-        packages = find_packages(exclude = ("demos", )),
+        packages = setuptools.find_packages(exclude = ("demos", )),
 
         app = app_option,
         options = {'py2app': get_py2app_options()},
@@ -157,8 +152,7 @@ def delete_old_app():
 def compile_py():
     compileall.compile_dir(PWD)
 
-_QT_CONF_TPL = """[Paths]
-Plugins = plugins
+_QT_CONF_TPL = """
 """
 
 def patch_qt_conf():
@@ -179,7 +173,7 @@ def package_app_for_mac():
 def print_help():
     msg = "Usage: " + "\n"
     msg += "\t" + "python setup.py py2app build" + "\n"
-    print msg
+    sys.stdout.write(msg)
 
 if __name__ == "__main__":
     args = sys.argv[1:]
