@@ -1,33 +1,13 @@
 # Resources About Qt GUI Framework Python Binding
 
-This article is an introduction to the PyQt/PySide GUI Application Development Framework that uses Python and Nokia’s Qt.
-
-Ever wondered how to easily write *good programs* using *Python*?
-Programs that would run on *Mac OS X* along with the various Linux variants?
-Programs that *look good*, look native, and also work great?
-
-Here’s one solution – *PyQt/PySide*! With it you can create complete, working applications that may look like this:
+You can create complete, working applications that may look like this with Qt Python Binding:
 
 ![snapshort of Calibre or Eric]()
 
-Nokia’s *Qt* is a free (LGPL) cross-platform C++ based application-framework, with GUI being its most prominent feature.
-
-*PyQt*/*PySide* is simply a python-binding to the C++ libraries that Qt provides. Using
-PyQt one can write neat looking GUI applications that do a lot, and do so
-easily.
-
-![alt](nokias-qt4-logo.png)
-
-*PySide* is ...
-
-a series of articles, starting with this one will aim to tutor interested
-programmers into using this wonderful library, and developing applications with
-it.
-
-
-FEATURES, you should read these first of all
+Qt FEATURES, you should read these first of all
 
  - [Qt and Key Technologies](http://doc.qt.nokia.com/latest/technology-apis.html)
+ - [MVC](http://doc.qt.nokia.com/latest/model-view-programming.html)
 
 ## Implementations
 
@@ -73,10 +53,6 @@ Tutorials collection
  - [Qt Reference Documentation](http://doc.qt.nokia.com/latest/index.html)
      - [Qt and Key Technologies](http://doc.qt.nokia.com/latest/technology-apis.html)
 
-MVC
-
- - http://doc.qt.nokia.com/latest/model-view-programming.html
-
 ## PyQt demos on Mac OS X
 
 Run PyQt Demos (version Python2.7)
@@ -86,5 +62,7 @@ Run PyQt Demos (version Python2.7)
 Fix 'Documentation' button doesn't works on Mac OS X
 
     sudo ln -s  /Applications/MacPorts/Qt4/*.app /opt/local/bin/
+
+
 
 

@@ -85,3 +85,13 @@ solution:
 
 
  - http://www.py2exe.org/index.cgi/Py2exeAndPyQt
+
+
+## load and render image failed
+
+http://stackoverflow.com/questions/885906/enabling-jpeg-support-for-qimage-in-py2exe-compiled-python-scripts
+http://www.thetoryparty.com/2009/08/27/pyqt-and-py2app-seriously-i-dont-know-what-to-do-with-you-when-youre-like-this/
+http://labs.qt.nokia.com/2007/08/23/deploying-mac-applications-without-the-hassle/
+http://doc.trolltech.com/4.3/deployment-mac.html
+http://www.py2exe.org/index.cgi/Py2exeAndPyQt
+

@@ -23,3 +23,11 @@ external links
 
 
 /System/Library/Input Methods
+
+
+
+.app render jpeg failed
+
+http://doc.qt.nokia.com/qq/qq17-imageio.html
+http://doc.qt.nokia.com/qq/qq10-windows-deployment.html
+http://developer.qt.nokia.com/doc/qt-4.8/qcoreapplication.html
